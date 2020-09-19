@@ -43,6 +43,11 @@ public:
 	BigInteger &operator[](int n);
 	BigInteger operator-(); // unary minus sign
 	operator string();		// for conversion from BigInteger to string
+	BigInteger sum_mod(BigInteger number1, BigInteger number2, BigInteger mod);
+	BigInteger sub_mod(BigInteger number1, BigInteger number2, BigInteger mod);
+	BigInteger mult_mod(BigInteger number1, BigInteger number2, BigInteger mod);
+	BigInteger power_mod(BigInteger number1, BigInteger number2, BigInteger mod);
+	long long toInt(string s);
 private:
 	bool equals(BigInteger n1, BigInteger n2);
 	bool less(BigInteger n1, BigInteger n2);
@@ -52,5 +57,4 @@ private:
 	string multiply(string n1, string n2);
 	pair<string, long long> divide(string n, long long den);
 	string toString(long long n);
-	long long toInt(string s);
 };

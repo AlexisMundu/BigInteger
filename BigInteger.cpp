@@ -449,6 +449,35 @@ pair<string, long long> BigInteger::divide(string n, long long den)
 }
 
 //-------------------------------------------------------------
+// returns the addition modulus of numher1 and number2
+BigInteger sum_mod(BigInteger number1, BigInteger number2, BigInteger mod){
+	return number1 + number2;
+}
+
+//-------------------------------------------------------------
+// returns the subtraction modulus of numher1 and number2
+BigInteger sub_mod(BigInteger number1, BigInteger number2, BigInteger mod){
+	return number1 - number2;
+}
+
+//-------------------------------------------------------------
+// returns the mutiplication modulus of numher1 and number2
+BigInteger BigInteger::mult_mod(BigInteger number1, BigInteger number2, BigInteger mod){
+	return (number1 * number2) % mod;
+}
+
+//-------------------------------------------------------------
+// returns the exponential modulus of numher1 and number2
+BigInteger power_mod(BigInteger number1, BigInteger number2, BigInteger mod){
+	BigInteger result = BigInteger(number1.getNumber());
+	for (size_t i = 1; i < number2.toInt(number2.getNumber()); i++)
+	{
+		result += number1;
+	}
+	return result % mod;
+}
+
+//-------------------------------------------------------------
 // converts long long to string
 string BigInteger::toString(long long n)
 {

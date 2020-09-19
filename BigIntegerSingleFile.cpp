@@ -49,6 +49,11 @@ public:
     BigInteger &operator[](int n);
     BigInteger operator-(); // unary minus sign
     operator string();      // for conversion from BigInteger to string
+    BigInteger sum_mod(BigInteger number1, BigInteger number2, BigInteger mod);
+	BigInteger sub_mod(BigInteger number1, BigInteger number2, BigInteger mod);
+	BigInteger mult_mod(BigInteger number1, BigInteger number2, BigInteger mod);
+	BigInteger power_mod(BigInteger number1, BigInteger number2, BigInteger mod);
+	long long toInt(string s);
 private:
     bool equals(BigInteger n1, BigInteger n2);
     bool less(BigInteger n1, BigInteger n2);
@@ -58,12 +63,18 @@ private:
     string multiply(string n1, string n2);
     pair<string, long long> divide(string n, long long den);
     string toString(long long n);
-    long long toInt(string s);
 };
 
 int main()
 {
-    cout << "HEY BigInteger here!";
+    cout << "HEY BigInteger here!\n";
+    BigInteger m = BigInteger("113761390187768762495764633863116309666020529270962343819658053282257104700231");
+    BigInteger n = BigInteger("9658053282257104700231");
+    BigInteger mod = BigInteger("231");
+    cout << "Suma Modular = " << m.sum_mod(m,n,mod).getNumber() << endl;
+    cout << "Resta Modular = " << m.sub_mod(m,n,mod).getNumber() << endl;
+    cout << "Multiplicación Modular = " << m.mult_mod(m,n,mod).getNumber() << endl;
+    cout << "Exponenciación Modular = " << m.power_mod(m,n,mod).getNumber() << endl;
     return 0;
 }
 
@@ -493,6 +504,37 @@ pair<string, long long> BigInteger::divide(string n, long long den)
 
     return make_pair(result, rem);
 }
+
+
+//-------------------------------------------------------------
+// returns the addition modulus of numher1 and number2
+BigInteger BigInteger::sum_mod(BigInteger number1, BigInteger number2, BigInteger mod){
+	return number1 + number2;
+}
+
+//-------------------------------------------------------------
+// returns the subtraction modulus of numher1 and number2
+BigInteger BigInteger::sub_mod(BigInteger number1, BigInteger number2, BigInteger mod){
+	return number1 - number2;
+}
+
+//-------------------------------------------------------------
+// returns the mutiplication modulus of numher1 and number2
+BigInteger BigInteger::mult_mod(BigInteger number1, BigInteger number2, BigInteger mod){
+	return (number1 * number2) % mod;
+}
+
+//-------------------------------------------------------------
+// returns the exponential modulus of numher1 and number2
+BigInteger BigInteger::power_mod(BigInteger number1, BigInteger number2, BigInteger mod){
+	BigInteger result = BigInteger(number1.getNumber());
+	for (size_t i = 1; i < number2.toInt(number2.getNumber()); i++)
+	{
+		result += number1;
+	}
+	return result % mod;
+}
+
 
 string BigInteger::toString(long long n)
 {
